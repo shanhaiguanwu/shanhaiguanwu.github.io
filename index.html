@@ -3,203 +3,267 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="shanhaiguanwu 的个人项目主页，收录 FileLens、清影、FetchDock 和 GameFixKit 的项目说明与下载。">
-  <meta name="theme-color" content="#f2ebe4">
+  <meta name="description" content="shanhaiguanwu 的个人项目，包括 FileLens、清影、FetchDock 和 GameFixKit 的简介与下载。">
+  <meta name="theme-color" content="#ffffff">
   <title>个人项目 · shanhaiguanwu</title>
   <style>
     @font-face {
-      font-family: "STIX Two Text";
-      src: url("assets/stix-two-text.woff2") format("woff2");
-      font-weight: 400 700;
+      font-family: "Bricolage Grotesque";
+      src: url("assets/bricolage-grotesque.woff2") format("woff2");
+      font-weight: 400 750;
       font-display: swap;
       unicode-range: U+0000-00FF, U+2000-206F;
     }
 
     @font-face {
-      font-family: "Noto Serif SC";
-      src: url("assets/noto-serif-sc.woff2") format("woff2");
-      font-weight: 400 800;
+      font-family: "Noto Sans SC";
+      src: url("assets/noto-sans-sc.woff2") format("woff2");
+      font-weight: 400 750;
       font-display: swap;
     }
 
     :root {
       color-scheme: light;
-      --paper: #f2ebe4;
-      --ink: #0e1c30;
-      --link: #821c16;
-      --link-hover: #57120e;
-      --rule: #6d6c6b;
-      --soft-rule: #a89788;
-      --gutter: clamp(1.25rem, 2.76vw, 3rem);
-      font-family: "STIX Two Text", "Noto Serif SC", Georgia, "Songti SC", SimSun, serif;
+      --paper: #fff;
+      --ink: #171717;
+      --muted: #4d4d4d;
+      --accent: #242424;
+      --line: #dedede;
+      --hover: #f7f7f7;
+      --selected: #efefef;
+      --gutter: clamp(1rem, 4.5vw, 4rem);
       color: var(--ink);
       background: var(--paper);
+      font-family: "Bricolage Grotesque", "Noto Sans SC", system-ui, "Microsoft YaHei UI", sans-serif;
+      font-synthesis: none;
+      scroll-padding-block-start: 1rem;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
-    body, h1, h2, h3, p { margin: 0; }
+    body, h1, h2, h3, h4, p, ul { margin: 0; }
+    a { color: inherit; }
+    a:hover { color: var(--accent); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    ::selection { color: var(--paper); background: var(--accent); }
+    [hidden] { display: none !important; }
 
     .shell {
-      inline-size: min(85.5rem, calc(100% - var(--gutter) * 2));
+      inline-size: min(72rem, calc(100% - 2 * var(--gutter)));
       margin-inline: auto;
     }
 
-    a, summary {
-      color: var(--link);
-      text-decoration-thickness: 1px;
-      text-underline-offset: .25em;
-    }
-
-    a:hover, summary:hover { color: var(--link-hover); }
-    a:focus-visible, summary:focus-visible {
-      outline: 2px solid var(--link);
-      outline-offset: 4px;
-    }
-
-    ::selection { color: var(--paper); background: var(--link); }
-
-    .masthead {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      gap: clamp(.75rem, 1.75vw, 1.65rem);
+    .site-header {
+      min-block-size: 4.75rem;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      min-block-size: 4.125rem;
-      padding-block: .4rem;
+      gap: 1rem;
+      border-block-end: 1px solid var(--line);
     }
 
-    .brand {
-      font-size: clamp(1.35rem, 2.42vw, 2.2rem);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -.025em;
-    }
-
-    .masthead-line { border-block-start: 1px solid var(--rule); }
-
-    .masthead a, .site-footer a, summary {
+    .owner { font-size: 1.06rem; font-weight: 700; letter-spacing: -.035em; }
+    .header-link, .browse, .site-footer a {
       display: inline-flex;
-      gap: .35em;
+      gap: .65rem;
       align-items: center;
       min-block-size: 2.75rem;
-      width: fit-content;
-      line-height: 1.3;
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
     }
 
-    .masthead a, .site-footer a { font-size: clamp(1.05rem, 1.64vw, 1.55rem); }
-    .arrow { inline-size: .75em; block-size: .75em; flex: none; }
+    .header-link:hover, .browse:hover, .site-footer a:hover,
+    .project-references a:hover { text-decoration: underline; text-underline-offset: .24em; }
 
-    .intro {
-      padding-block-start: clamp(.85rem, 1.95vw, 1.8rem);
-      margin-block-end: clamp(1.25rem, 1.5vw, 1.4rem);
+    .arrow {
+      display: inline-block;
+      position: relative;
+      inline-size: .9rem;
+      block-size: .9rem;
+      flex: none;
+      color: var(--accent);
+    }
+
+    .arrow::before {
+      content: "";
+      position: absolute;
+      inset: 50% 12% auto 12%;
+      border-block-start: 1px solid currentColor;
+    }
+
+    .arrow::after {
+      content: "";
+      position: absolute;
+      inset: 50% 12% auto auto;
+      inline-size: .36rem;
+      block-size: .36rem;
+      border-block-start: 1px solid currentColor;
+      border-inline-end: 1px solid currentColor;
+      transform: translateY(-45%) rotate(45deg);
+    }
+
+    .arrow-out { transform: rotate(-45deg); }
+    .arrow-down { transform: rotate(90deg); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(15rem, .6fr);
+      gap: clamp(1.5rem, 6vw, 6rem);
+      align-items: end;
+      padding-block: clamp(3.2rem, 6.1vw, 5.5rem) clamp(3rem, 6.3vw, 5.75rem);
     }
 
     h1 {
-      font-size: clamp(2.9rem, 5.4vw, 4.9rem);
-      font-weight: 800;
-      letter-spacing: -.035em;
-      line-height: 1.1;
-    }
-
-    .intro p {
-      margin-block-start: .48rem;
-      font-size: clamp(1.1rem, 2.14vw, 1.94rem);
-      line-height: 1.45;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: minmax(0, 25fr) minmax(0, 17fr);
-      gap: clamp(1rem, 1.72vw, 1.55rem);
-    }
-
-    .project-photo {
-      display: block;
-      inline-size: 100%;
-      block-size: clamp(12rem, 23vw, 20.8125rem);
-      object-fit: cover;
-    }
-
-    .project-copy { padding-inline: .3rem; }
-    .features .project-copy { padding-block-start: .88rem; }
-
-    .project h2 {
-      font-size: clamp(2rem, 3.6vw, 3.25rem);
+      font-size: clamp(3rem, 7vw, 6rem);
       font-weight: 700;
-      line-height: 1.12;
-      letter-spacing: -.029em;
+      letter-spacing: -.04em;
+      line-height: 1.06;
+    }
+
+    .hero-intro p {
+      max-inline-size: 26ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.35vw, 1.22rem);
+      line-height: 1.75;
+      text-wrap: pretty;
+    }
+
+    .browse { margin-block-start: .35rem; color: var(--accent); }
+
+    .catalog {
+      border-block-start: 1px solid var(--line);
+      padding-block-start: clamp(1.35rem, 2.5vw, 2.1rem);
+    }
+
+    .catalog h2 {
+      margin-block-end: clamp(1rem, 2vw, 1.6rem);
+      font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+      font-weight: 650;
+      letter-spacing: -.02em;
+    }
+
+    .collection {
+      display: grid;
+      grid-template-columns: minmax(12rem, 1fr) minmax(0, 2.3fr);
+      gap: clamp(1.25rem, 4vw, 3.75rem);
+      align-items: start;
+    }
+
+    .project-nav { display: grid; align-content: start; border-block-end: 1px solid var(--line); }
+
+    .project-tab {
+      display: flex;
+      gap: .55rem;
+      align-items: center;
+      justify-content: space-between;
+      min-block-size: 4.65rem;
+      padding: .65rem clamp(.65rem, 1.25vw, 1.1rem);
+      border-block-start: 1px solid var(--line);
+      text-decoration: none;
+    }
+
+    .project-tab strong, .project-tab small { display: block; }
+    .project-tab strong { font-size: clamp(1rem, 1.55vw, 1.22rem); font-weight: 680; letter-spacing: -.025em; }
+    .project-tab small { margin-block-start: .2rem; color: var(--muted); font-size: .78rem; }
+    .project-tab:hover { background: var(--hover); }
+    .project-tab[aria-selected="true"] { background: var(--selected); box-shadow: inset 1px 0 0 var(--accent); }
+    .project-tab .arrow { opacity: .72; }
+    .project-tab[aria-selected="true"] .arrow { opacity: 1; }
+    .project-tab:focus-visible { position: relative; z-index: 1; outline-offset: -3px; }
+
+    .project-panel {
+      padding: clamp(1.25rem, 3.8vw, 3.4rem);
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .project-panel + .project-panel { margin-block-start: 1rem; }
+    .project-panel.is-current { margin-block-start: 0; }
+
+    .project-heading {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem 1.2rem;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .project-heading h3 {
+      font-size: clamp(2rem, 4.5vw, 4rem);
+      font-weight: 680;
+      line-height: 1.1;
+      letter-spacing: -.04em;
       overflow-wrap: anywhere;
     }
 
-    .platform, .summary {
-      font-size: clamp(1.05rem, 1.7vw, 1.55rem);
-      line-height: 1.36;
+    .platform { color: var(--accent); font-size: .83rem; font-weight: 650; }
+    .project-intro {
+      margin-block-start: clamp(.7rem, 1.4vw, 1.15rem);
+      max-inline-size: 60ch;
+      color: var(--muted);
+      line-height: 1.75;
+      text-wrap: pretty;
     }
 
-    .platform { margin-block-start: .1rem; }
+    .assets { margin-block-start: clamp(1.35rem, 2.5vw, 2.15rem); }
+    .asset-group + .asset-group { margin-block-start: 1.1rem; }
+    .asset-group h4 { margin-block-end: .42rem; color: var(--muted); font-size: .78rem; font-weight: 650; }
 
-    .downloads summary {
-      cursor: pointer;
+    .asset-list {
+      padding: 0;
       list-style: none;
-      font-size: clamp(1.1rem, 1.67vw, 1.5rem);
-      text-decoration-line: underline;
+      border-block-start: 1px solid var(--line);
     }
 
-    summary::-webkit-details-marker { display: none; }
-    summary .when-open, details[open] summary .when-closed { display: none; }
-    details[open] summary .when-open { display: inline; }
-    details[open] summary .arrow { transform: rotate(90deg); }
-
-    .download-options {
-      max-inline-size: 43rem;
-      margin-block: .4rem .6rem;
-      padding-block: .75rem .4rem;
-      border-block-start: 1px solid var(--soft-rule);
-      font-size: 1rem;
-      line-height: 1.65;
+    .asset {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      align-items: center;
+      gap: clamp(.65rem, 1.5vw, 1.25rem);
+      padding-inline: .65rem;
+      min-block-size: 3rem;
+      border-block-end: 1px solid var(--line);
+      color: var(--ink);
+      font-size: .92rem;
+      font-weight: 630;
+      text-decoration: none;
     }
 
-    .download-group { margin-block-start: .65rem; }
-    .download-group h3 { font-size: 1rem; }
+    .asset:hover, .asset:focus-visible { background: var(--hover); }
+    .asset:hover span { text-decoration: underline; text-underline-offset: .22em; }
+    .asset small { color: var(--muted); font-size: .73rem; font-weight: 600; letter-spacing: .025em; }
 
-    .download-links {
+    .project-references, .site-footer {
       display: flex;
       flex-wrap: wrap;
-      gap: 0 1.15rem;
-      padding: 0;
-      margin: .05rem 0 0;
-      list-style: none;
+      gap: 0 clamp(1.05rem, 2vw, 1.6rem);
     }
 
-    .download-links a, .project-doc a {
+    .project-references { margin-block-start: .8rem; }
+    .project-references a {
       display: inline-flex;
       align-items: center;
       min-block-size: 2.75rem;
-    }
-
-    .supporting {
-      display: grid;
-      grid-template-columns: minmax(0, 48.45fr) minmax(0, 51.55fr);
-      margin-block-start: clamp(1.2rem, 1.8vw, 1.65rem);
-      padding-block-start: clamp(1.1rem, 1.65vw, 1.5rem);
-      border-block-start: 1px solid var(--rule);
-    }
-
-    .supporting .project:first-child { padding-inline-end: 1rem; }
-    .supporting .project + .project {
-      border-inline-start: 1px solid var(--rule);
-      padding-inline-start: clamp(1.35rem, 3.35vw, 3rem);
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 600;
+      text-decoration-thickness: 1px;
+      text-underline-offset: .2em;
     }
 
     .site-footer {
-      margin-block-start: clamp(1.35rem, 2vw, 1.8rem);
-      border-block-start: 1px solid var(--rule);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0 clamp(1.25rem, 3vw, 2.7rem);
-      padding: .43rem .2rem .55rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-block-start: clamp(3rem, 6.3vw, 5.75rem);
+      padding-block: .6rem 1.3rem;
+      border-block-start: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .85rem;
     }
 
-    .visually-hidden, .skip-link:not(:focus) {
+    .footer-links { display: flex; flex-wrap: wrap; gap: 0 1.2rem; }
+
+    .skip:not(:focus) {
       position: absolute;
       inline-size: 1px;
       block-size: 1px;
@@ -208,157 +272,227 @@
       white-space: nowrap;
     }
 
-    .skip-link:focus {
-      position: absolute;
-      z-index: 1;
-      padding: .65rem;
-      background: var(--paper);
+    .skip:focus { position: absolute; z-index: 2; padding: .65rem; background: var(--paper); }
+
+    @media (max-width: 48rem) {
+      .site-header { min-block-size: 3.75rem; }
+      .hero { grid-template-columns: minmax(0, 1fr); gap: 1.05rem; padding-block: 2.85rem 2.2rem; }
+      .hero-intro p { max-inline-size: 36ch; }
+      .collection { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+      .project-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .project-tab { min-block-size: 3.85rem; }
+      .project-tab:nth-child(even) { border-inline-start: 1px solid var(--line); }
+      .project-heading { flex-direction: column; }
+      .project-intro { text-wrap: balance; }
+      .site-footer { margin-block-start: 2.75rem; }
     }
 
-    @media (max-width: 43rem) {
-      .intro { padding-block-start: .9rem; }
-      .features, .supporting { grid-template-columns: minmax(0, 1fr); }
-      .features { gap: 1.25rem; }
-      .project-photo { block-size: auto; aspect-ratio: 1.9; }
-      .project-copy { padding-inline: 0; }
-      .features .project-copy { padding-block-start: .65rem; }
-      .supporting .project:first-child { padding-inline-end: 0; }
-      .supporting .project + .project {
-        border-inline-start: 0;
-        border-block-start: 1px solid var(--rule);
-        margin-block-start: .85rem;
-        padding-block-start: 1.05rem;
-        padding-inline-start: 0;
-      }
+    @media (max-width: 23rem) {
+      .project-tab { padding-inline: .6rem; }
+      .project-tab small { font-size: .73rem; }
+      .project-tab .arrow { display: none; }
+      .project-panel { padding-inline: 1rem; }
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#projects">跳到项目</a>
-  <header class="masthead shell">
-    <span class="brand">shanhaiguanwu</span>
-    <span class="masthead-line" aria-hidden="true"></span>
-    <a href="https://github.com/shanhaiguanwu">GitHub <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></a>
+  <a href="#projects" class="skip">跳到项目</a>
+  <header class="site-header shell">
+    <span class="owner">shanhaiguanwu</span>
+    <a class="header-link" href="https://github.com/shanhaiguanwu">GitHub <i class="arrow arrow-out" aria-hidden="true"></i></a>
   </header>
 
-  <main class="shell" id="projects">
-    <div class="intro">
-      <h1>个人项目</h1>
-      <p>文件预览、影音播放、下载管理与游戏环境排查。</p>
-    </div>
+  <main class="shell">
+    <section class="hero" aria-labelledby="title">
+      <h1 id="title">个人项目</h1>
+      <div class="hero-intro">
+        <p>文件预览、影音播放、下载管理与 Windows 游戏环境排查。</p>
+        <a href="#projects" class="browse">浏览项目 <i class="arrow arrow-down" aria-hidden="true"></i></a>
+      </div>
+    </section>
 
-    <div class="features">
-      <article class="project" id="filelens" aria-labelledby="filelens-title">
-        <img class="project-photo" src="assets/filelens.webp" alt="" width="1360" height="566" decoding="async" fetchpriority="high">
-        <div class="project-copy">
-          <h2 id="filelens-title">FileLens</h2>
-          <p class="platform">Windows</p>
-          <p class="summary">本地文件预览与 OCR</p>
-          <details class="downloads">
-            <summary><span class="visually-hidden">FileLens：</span><span class="when-closed">查看下载</span><span class="when-open">收起下载</span><svg class="arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></summary>
-            <div class="download-options">
-              <p>在本地识别并只读预览文本、图片、PDF 和 Office 文档，可用 OCR 提取图片中的文字。</p>
-              <div class="download-group">
-                <ul class="download-links">
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FileLens-v1.3.3/FileLens-1.3.3-win-x64-Setup.exe">安装 EXE</a></li>
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FileLens-v1.3.3/FileLens-1.3.3-win-x64.zip">安装 ZIP</a></li>
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/FileLens-v1.3.3">版本与校验</a></li>
-                </ul>
-              </div>
-              <p class="project-doc"><a href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/FileLens/README.md">项目文档（需仓库权限）</a></p>
-            </div>
-          </details>
+    <section class="catalog" id="projects" aria-labelledby="catalog-title">
+      <h2 id="catalog-title">项目与下载</h2>
+      <div class="collection">
+        <div class="project-nav">
+          <a id="pick-filelens" class="project-tab" href="#filelens"><span><strong>FileLens</strong><small>文件预览与 OCR</small></span><i class="arrow" aria-hidden="true"></i></a>
+          <a id="pick-qingying" class="project-tab" href="#qingying"><span><strong>清影</strong><small>播放与个人片库</small></span><i class="arrow" aria-hidden="true"></i></a>
+          <a id="pick-fetchdock" class="project-tab" href="#fetchdock"><span><strong>FetchDock</strong><small>下载与网盘助手</small></span><i class="arrow" aria-hidden="true"></i></a>
+          <a id="pick-gamefixkit" class="project-tab" href="#gamefixkit"><span><strong>GameFixKit</strong><small>游戏环境排查</small></span><i class="arrow" aria-hidden="true"></i></a>
         </div>
-      </article>
-      <article class="project" id="qingying" aria-labelledby="qingying-title">
-        <img class="project-photo" src="assets/qingying.webp" alt="" width="1050" height="644" decoding="async">
-        <div class="project-copy">
-          <h2 id="qingying-title">清影</h2>
-          <p class="platform">Android / Windows</p>
-          <p class="summary">播放视频与管理个人片库</p>
-          <details class="downloads">
-            <summary><span class="visually-hidden">清影：</span><span class="when-closed">查看下载</span><span class="when-open">收起下载</span><svg class="arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></summary>
-            <div class="download-options">
-              <p>管理和播放个人片库，支持影片搜索、多线路点播、收藏与观看历史。手机端支持离线缓存。</p>
-              <div class="download-group">
-                <h3>Android</h3>
-                <ul class="download-links">
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/qingying-v1.0.0-public.10/Qingying-1.0.0-public-android.apk">下载 APK</a></li>
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/qingying-v1.0.0-public.10">版本与校验</a></li>
-                </ul>
-              </div>
-              <div class="download-group">
-                <h3>Windows x64</h3>
-                <ul class="download-links">
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/qingying-windows-v1.0.0/Qingying-1.0.0-windows-x64-setup.exe">安装 EXE</a></li>
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/qingying-windows-v1.0.0/Qingying-1.0.0-windows-x64.zip">安装 ZIP</a></li>
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/qingying-windows-v1.0.0">版本与校验</a></li>
-                </ul>
-              </div>
-              <p class="project-doc"><a href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/qingying/README.md">项目文档（需仓库权限）</a></p>
-            </div>
-          </details>
+        <div class="project-panels">
+        <article class="project-panel" id="filelens" aria-labelledby="filelens-title">
+          <div class="project-heading">
+            <h3 id="filelens-title">FileLens</h3>
+            <p class="platform">Windows 11 x64</p>
+          </div>
+          <p class="project-intro">在本地识别并只读预览文本、图片、PDF 和 Office 文档，可用 OCR 提取图片中的文字。</p>
+          <div class="assets">
+        <div class="asset-group">
+          <ul class="asset-list">
+            <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FileLens-v1.3.3/FileLens-1.3.3-win-x64-Setup.exe" class="asset"><span>Windows 安装程序</span><small>EXE</small><i class="arrow arrow-out" aria-hidden="true"></i></a></li>
+            <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FileLens-v1.3.3/FileLens-1.3.3-win-x64.zip" class="asset"><span>Windows 安装压缩包</span><small>ZIP</small><i class="arrow arrow-out" aria-hidden="true"></i></a></li>
+          </ul>
         </div>
-      </article>
-    </div>
-
-    <div class="supporting">
-      <article class="project" id="fetchdock" aria-labelledby="fetchdock-title">
-        <div class="project-copy">
-          <h2 id="fetchdock-title">FetchDock</h2>
-          <p class="platform">Windows · Edge / Chrome</p>
-          <p class="summary">多线程下载与浏览器网盘助手</p>
-          <details class="downloads">
-            <summary><span class="visually-hidden">FetchDock：</span><span class="when-closed">查看下载</span><span class="when-open">收起下载</span><svg class="arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></summary>
-            <div class="download-options">
-              <p>把浏览器里的网盘任务推送到桌面下载器，支持多线程下载、断点续传和任务排队。</p>
-              <div class="download-group">
-                <h3>Windows x64</h3>
-                <ul class="download-links">
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-windows-x64-setup.exe">安装 EXE</a></li>
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-windows-x64.zip">安装 ZIP</a></li>
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-windows-x64-portable.zip">便携版 ZIP</a></li>
-                </ul>
-              </div>
-              <div class="download-group">
-                <h3>扩展与源码</h3>
-                <ul class="download-links">
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-browser-extension.zip">浏览器扩展 ZIP</a></li>
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/FetchDock-v2.0.2">源码与校验</a></li>
-                </ul>
-              </div>
-              <p class="project-doc"><a href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/FetchDock/README.md">项目文档（需仓库权限）</a></p>
-            </div>
-          </details>
+          </div>
+          <div class="project-references">
+            <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/FileLens-v1.3.3">版本与校验</a>
+            <a href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/FileLens/README.md">项目文档（需权限）</a>
+          </div>
+        </article>
+        <article class="project-panel" id="qingying" aria-labelledby="qingying-title">
+          <div class="project-heading">
+            <h3 id="qingying-title">清影</h3>
+            <p class="platform">Android · Windows</p>
+          </div>
+          <p class="project-intro">管理和播放个人片库，支持影片搜索、多线路点播、收藏与观看历史。手机端支持离线缓存。</p>
+          <div class="assets">
+        <div class="asset-group" aria-label="Android" role="group">
+          <h4>Android</h4>
+          <ul class="asset-list">
+            <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/qingying-v1.0.0-public.10/Qingying-1.0.0-public-android.apk" class="asset"><span>Android 安装包</span><small>APK</small><i class="arrow arrow-out" aria-hidden="true"></i></a></li>
+          </ul>
         </div>
-      </article>
-      <article class="project" id="gamefixkit" aria-labelledby="gamefixkit-title">
-        <div class="project-copy">
-          <h2 id="gamefixkit-title">GameFixKit</h2>
-          <p class="platform">Windows</p>
-          <p class="summary">游戏环境体检与修复</p>
-          <details class="downloads">
-            <summary><span class="visually-hidden">GameFixKit：</span><span class="when-closed">查看下载</span><span class="when-open">收起下载</span><svg class="arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></summary>
-            <div class="download-options">
-              <p>排查游戏启动时的运行库和系统服务问题。先做只读检查，经确认后可备份并执行修复。</p>
-              <div class="download-group">
-                <ul class="download-links">
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/GameFixKit-v0.1.1/GameFixKit-0.1.1-windows-x64-setup.exe">安装 EXE</a></li>
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/GameFixKit-v0.1.1/GameFixKit-0.1.1-windows-x64.zip">安装 ZIP</a></li>
-                  <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/GameFixKit-v0.1.1">版本与校验</a></li>
-                </ul>
-              </div>
-              <p class="project-doc"><a href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/GameFixKit/README.md">项目文档（需仓库权限）</a></p>
-            </div>
-          </details>
+        <div class="asset-group" aria-label="Windows" role="group">
+          <h4>Windows</h4>
+          <ul class="asset-list">
+            <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/qingying-windows-v1.0.0/Qingying-1.0.0-windows-x64-setup.exe" class="asset"><span>Windows 安装程序</span><small>EXE</small><i class="arrow arrow-out" aria-hidden="true"></i></a></li>
+            <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/qingying-windows-v1.0.0/Qingying-1.0.0-windows-x64.zip" class="asset"><span>Windows 安装压缩包</span><small>ZIP</small><i class="arrow arrow-out" aria-hidden="true"></i></a></li>
+          </ul>
         </div>
-      </article>
-    </div>
+          </div>
+          <div class="project-references">
+            <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/qingying-v1.0.0-public.10">Android 版本与校验</a>
+            <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/qingying-windows-v1.0.0">Windows 版本与校验</a>
+            <a href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/qingying/README.md">项目文档（需权限）</a>
+          </div>
+        </article>
+        <article class="project-panel" id="fetchdock" aria-labelledby="fetchdock-title">
+          <div class="project-heading">
+            <h3 id="fetchdock-title">FetchDock</h3>
+            <p class="platform">Windows · Edge / Chrome</p>
+          </div>
+          <p class="project-intro">把浏览器里的网盘任务推送到桌面下载器，支持多线程下载、断点续传和任务排队。</p>
+          <div class="assets">
+        <div class="asset-group" aria-label="Windows" role="group">
+          <h4>Windows</h4>
+          <ul class="asset-list">
+            <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-windows-x64-setup.exe" class="asset"><span>Windows 安装程序</span><small>EXE</small><i class="arrow arrow-out" aria-hidden="true"></i></a></li>
+            <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-windows-x64.zip" class="asset"><span>Windows 安装压缩包</span><small>ZIP</small><i class="arrow arrow-out" aria-hidden="true"></i></a></li>
+            <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-windows-x64-portable.zip" class="asset"><span>Windows 便携版</span><small>ZIP</small><i class="arrow arrow-out" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+        <div class="asset-group" aria-label="Edge / Chrome" role="group">
+          <h4>Edge / Chrome</h4>
+          <ul class="asset-list">
+            <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-browser-extension.zip" class="asset"><span>浏览器扩展</span><small>ZIP</small><i class="arrow arrow-out" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+          </div>
+          <div class="project-references">
+            <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/FetchDock-v2.0.2">源码与校验</a>
+            <a href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/FetchDock/README.md">项目文档（需权限）</a>
+          </div>
+        </article>
+        <article class="project-panel" id="gamefixkit" aria-labelledby="gamefixkit-title">
+          <div class="project-heading">
+            <h3 id="gamefixkit-title">GameFixKit</h3>
+            <p class="platform">Windows 10 / 11 x64</p>
+          </div>
+          <p class="project-intro">排查游戏启动时的运行库和系统服务问题。先做只读检查，经确认后可备份并执行修复。</p>
+          <div class="assets">
+        <div class="asset-group">
+          <ul class="asset-list">
+            <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/GameFixKit-v0.1.1/GameFixKit-0.1.1-windows-x64-setup.exe" class="asset"><span>Windows 安装程序</span><small>EXE</small><i class="arrow arrow-out" aria-hidden="true"></i></a></li>
+            <li><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/GameFixKit-v0.1.1/GameFixKit-0.1.1-windows-x64.zip" class="asset"><span>Windows 安装压缩包</span><small>ZIP</small><i class="arrow arrow-out" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+          </div>
+          <div class="project-references">
+            <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/GameFixKit-v0.1.1">版本与校验</a>
+            <a href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/GameFixKit/README.md">项目文档（需权限）</a>
+          </div>
+        </article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer shell">
-    <a href="https://github.com/shanhaiguanwu/Codex_workspace" aria-label="项目文档，需仓库权限">项目文档 <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></a>
-    <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases">GitHub Releases <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></a>
+    <span>shanhaiguanwu</span>
+    <div class="footer-links">
+      <a href="https://github.com/shanhaiguanwu/Codex_workspace" aria-label="项目文档，需仓库权限">项目文档</a>
+      <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases">发行记录 <i class="arrow arrow-out" aria-hidden="true"></i></a>
+    </div>
   </footer>
+
+  <script>
+    const list = document.querySelector(".project-nav");
+    const tabs = [...list.querySelectorAll("a")];
+    const panels = tabs.map(tab => document.querySelector(tab.hash));
+    const vertical = matchMedia("(min-width: 48.001rem)");
+
+    function selectProject(index, { focus = false, updateUrl = false } = {}) {
+      tabs.forEach((tab, position) => {
+        const current = position === index;
+        tab.setAttribute("aria-selected", String(current));
+        tab.tabIndex = current ? 0 : -1;
+        panels[position].hidden = !current;
+        panels[position].classList.toggle("is-current", current);
+      });
+
+      if (focus) tabs[index].focus();
+      if (updateUrl && location.hash !== tabs[index].hash) {
+        history.replaceState(null, "", tabs[index].hash);
+      }
+    }
+
+    function syncHash() {
+      const index = tabs.findIndex(tab => tab.hash === location.hash);
+      if (index >= 0) selectProject(index);
+    }
+
+    function updateOrientation() {
+      list.setAttribute("aria-orientation", vertical.matches ? "vertical" : "horizontal");
+    }
+
+    list.setAttribute("role", "tablist");
+    list.setAttribute("aria-labelledby", "catalog-title");
+    updateOrientation();
+    vertical.addEventListener("change", updateOrientation);
+
+    tabs.forEach((tab, index) => {
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("aria-controls", panels[index].id);
+      panels[index].setAttribute("role", "tabpanel");
+      panels[index].setAttribute("aria-labelledby", tab.id);
+
+      tab.addEventListener("click", event => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        selectProject(index, { updateUrl: true });
+      });
+
+      tab.addEventListener("keydown", event => {
+        if (event.key === " ") {
+          event.preventDefault();
+          selectProject(index, { updateUrl: true });
+          return;
+        }
+        const deltas = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: vertical.matches ? -1 : -2, ArrowDown: vertical.matches ? 1 : 2 };
+        const destination = event.key === "Home" ? 0
+          : event.key === "End" ? tabs.length - 1
+          : event.key in deltas ? (index + deltas[event.key] + tabs.length) % tabs.length
+          : null;
+        if (destination === null) return;
+        event.preventDefault();
+        selectProject(destination, { focus: true, updateUrl: true });
+      });
+    });
+
+    selectProject(0);
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+  </script>
 </body>
 </html>
