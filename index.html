@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="shanhaiguanwu 的个人项目主页，收录 FileLens、清影、FetchDock 和 GameFixKit。">
+  <meta name="theme-color" content="#f4f7f2">
+  <title>项目手册 · shanhaiguanwu</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f7f2;
+      --ink: #222b23;
+      --muted: #49564c;
+      --green: #28503b;
+      --line: #b9c3b4;
+      --highlight: #e5ecdb;
+      font-family: "Source Sans 3", "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: var(--green); text-underline-offset: .24em; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+    ::selection { color: var(--paper); background: var(--green); }
+
+    .shell { width: min(100% - 3rem, 76rem); margin-inline: auto; }
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .75rem 1.5rem;
+      padding-block: 1.3rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .site-owner { font-weight: 700; letter-spacing: .02em; }
+    .site-header a, .site-footer a, .project-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2rem;
+      font-weight: 600;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+      align-items: start;
+      gap: clamp(2rem, 5vw, 5rem);
+      padding-block: clamp(2rem, 5vw, 4.5rem);
+    }
+    .intro {
+      padding: clamp(1.5rem, 3.6vw, 3rem);
+      background: var(--highlight);
+      border-top: .35rem solid var(--green);
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      font-size: clamp(2.65rem, 5.9vw, 5rem);
+      line-height: 1.14;
+      letter-spacing: -.04em;
+      color: var(--green);
+    }
+    h1 span { display: block; }
+    .intro p { margin-top: 1.5rem; line-height: 1.8; max-width: 26ch; }
+
+    .project-heading {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .35rem 1rem;
+      align-items: baseline;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid var(--green);
+    }
+    .project-heading h2 { font-size: 1.25rem; }
+    .project-heading p { font-size: .875rem; color: var(--muted); }
+    .project-list { list-style: none; margin: 0; padding: 0; }
+    .project { padding-block: 1.15rem; border-bottom: 1px solid var(--line); }
+    .project-title {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: .25rem 1rem;
+    }
+    .project-title h3 {
+      font-size: clamp(1.55rem, 2.7vw, 2.25rem);
+      line-height: 1.2;
+      letter-spacing: -.035em;
+      overflow-wrap: anywhere;
+    }
+    .platform {
+      color: var(--green);
+      font-size: .82rem;
+      font-weight: 600;
+    }
+    .project-description { margin-top: .5rem; color: var(--muted); line-height: 1.65; }
+    .project-link { margin-top: .25rem; font-size: .9rem; }
+    .site-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: .25rem 1.25rem;
+      padding-block: .95rem 1.4rem;
+      border-top: 1px solid var(--line);
+      font-size: .875rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 47rem) {
+      .shell { width: min(100% - 2rem, 76rem); }
+      main { grid-template-columns: 1fr; }
+      h1 { font-size: clamp(2.25rem, 10.7vw, 2.65rem); }
+      h1 span { display: inline; }
+      .intro p { margin-top: .85rem; max-width: 36ch; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header shell">
+    <span class="site-owner">shanhaiguanwu</span>
+    <a href="https://github.com/shanhaiguanwu">GitHub 主页</a>
+  </header>
+
+  <main class="shell">
+    <div class="intro">
+      <h1>个人<span>项目手册</span></h1>
+      <p>我为日常工作和生活做的小工具，涵盖本地文件预览、Android 片库、下载管理和 Windows 游戏环境排查。</p>
+    </div>
+
+    <section aria-labelledby="project-heading">
+      <div class="project-heading">
+        <h2 id="project-heading">项目目录</h2>
+        <p id="repo-access">项目文档需有仓库访问权限</p>
+      </div>
+      <!-- 新增项目时复制一条 li，修改名称、平台、简介和文档链接。 -->
+      <ul class="project-list" role="list" aria-describedby="repo-access">
+        <li class="project">
+          <div class="project-title">
+            <h3>FileLens</h3>
+            <span class="platform">Windows</span>
+          </div>
+          <p class="project-description">在本地识别并只读预览文本、图片、PDF 和 Office 文档，可用 OCR 提取图片中的文字。</p>
+          <a class="project-link" href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/FileLens/README.md" aria-label="阅读 FileLens 项目文档">项目文档</a>
+        </li>
+        <li class="project">
+          <div class="project-title">
+            <h3>清影</h3>
+            <span class="platform">Android</span>
+          </div>
+          <p class="project-description">管理和播放个人片库，支持影片搜索、多线路点播、收藏、观看历史与离线缓存。</p>
+          <a class="project-link" href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/qingying/README.md" aria-label="阅读清影项目文档">项目文档</a>
+        </li>
+        <li class="project">
+          <div class="project-title">
+            <h3>FetchDock</h3>
+            <span class="platform">Windows · Edge / Chrome</span>
+          </div>
+          <p class="project-description">把浏览器里的网盘任务推送到桌面下载器，支持多线程下载、断点续传和任务排队。</p>
+          <a class="project-link" href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/FetchDock/README.md" aria-label="阅读 FetchDock 项目文档">项目文档</a>
+        </li>
+        <li class="project">
+          <div class="project-title">
+            <h3>GameFixKit</h3>
+            <span class="platform">Windows</span>
+          </div>
+          <p class="project-description">排查游戏启动时的运行库和系统服务问题。先做只读检查，经确认后可备份并执行修复。</p>
+          <a class="project-link" href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/GameFixKit/README.md" aria-label="阅读 GameFixKit 项目文档">项目文档</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer shell">
+    <span>项目源码与构建说明</span>
+    <a href="https://github.com/shanhaiguanwu/Codex_workspace">Codex_workspace</a>
+  </footer>
+</body>
+</html>
