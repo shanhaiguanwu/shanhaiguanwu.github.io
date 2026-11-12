@@ -32,17 +32,31 @@ h1, h2, h3 { line-height: 1.3; }
 h1 { margin: 0; font-size: clamp(1.9rem, 5.6vw, 3.25rem); letter-spacing: -.035em; text-wrap: balance; }
 .lead { margin: 1rem 0 2rem; color: #4d4d4d; font-size: 1.08rem; }
 
+.guide-toc-anchor { scroll-margin-block-start: 1rem; }
+.guide-toc-anchor:focus { outline: none; }
+.guide-toc-anchor:focus-visible + .guide-toc { outline: 2px solid #242424; outline-offset: -2px; }
+
 .guide-toc {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0 1.25rem;
+  gap: 0 clamp(.75rem, 3vw, 1.25rem);
+  padding-block: .25rem;
+  border-block-end: 1px solid #dedede;
+  background: #fff;
   font-size: .92rem;
 }
 
 .guide-toc a, .guide-return a { display: inline-flex; align-items: center; min-height: 2.75rem; }
 .guide-return { margin-block-start: 1rem; }
-.guide-toc, article h2[id] { scroll-margin-block-start: 1rem; }
+article h2[id], article section a { scroll-margin-block-start: 4.75rem; }
+
+@media (max-width: 18rem) {
+  article h2[id], article section a { scroll-margin-block-start: 7.5rem; }
+}
 
 section { border-top: 1px solid #dedede; margin-top: 1.75rem; padding-top: 1.45rem; }
 h2 { margin: 0 0 .65rem; font-size: clamp(1.25rem, 3vw, 1.5rem); }
