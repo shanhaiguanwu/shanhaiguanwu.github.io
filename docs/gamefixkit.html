@@ -18,12 +18,18 @@
     <article>
       <h1>GameFixKit 使用文档</h1>
       <p class="lead">先以只读方式排查 Windows 游戏运行环境，再按提示决定是否执行修复。</p>
+      <nav class="guide-toc" aria-label="本页目录">
+        <strong>本页目录</strong>
+        <a href="#install">安装</a>
+        <a href="#start">使用</a>
+        <a href="#verify">文件校验</a>
+      </nav>
       <section aria-labelledby="install">
-        <h2 id="install">安装 · Windows 10 / 11 x64</h2>
+        <h2 id="install" tabindex="-1">安装 · Windows 10 / 11 x64</h2>
         <p><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/GameFixKit-v0.1.1/GameFixKit-0.1.1-windows-x64-setup.exe">下载 EXE</a> · <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/GameFixKit-v0.1.1/GameFixKit-0.1.1-windows-x64.zip">下载安装 ZIP</a>。ZIP 需要先解压，再运行其中的 EXE。安装包自带 Python 和 Tk，安装后从开始菜单打开。</p>
       </section>
       <section aria-labelledby="start">
-        <h2 id="start">先体检，再确认修复</h2>
+        <h2 id="start" tabindex="-1">先体检，再确认修复</h2>
         <ol>
           <li>进入「环境体检与修复」，先运行只读体检，查看与游戏故障相关的运行库、系统服务等检查结果。</li>
           <li>阅读选中项目的修复说明，再决定是否执行。部分操作需要管理员权限，请按应用提示确认。</li>
@@ -32,7 +38,7 @@
         <p>商品监控功能需要另行运行本机服务。环境体检可以独立使用。</p>
       </section>
       <section aria-labelledby="verify">
-        <h2 id="verify">版本与文件校验</h2>
+        <h2 id="verify" tabindex="-1">版本与文件校验</h2>
         <p>从 <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/GameFixKit-v0.1.1">0.1.1 发行页</a> 下载 <code>SHA256SUMS.txt</code>。在下载目录运行以下 PowerShell 命令，将结果与清单里同名文件的 SHA-256 比较。</p>
         <pre><code>Get-FileHash -Algorithm SHA256 .\GameFixKit-0.1.1-windows-x64-setup.exe</code></pre>
         <p>安装包未进行代码签名。0.1.1 发行记录包含安装、启动、只读扫描、自检和卸载的验证范围。</p>

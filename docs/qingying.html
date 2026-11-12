@@ -18,15 +18,21 @@
     <article>
       <h1>清影 使用文档</h1>
       <p class="lead">用本地文件、视频直链或自备的 MacCMS 片源播放视频，管理收藏和观看历史。</p>
+      <nav class="guide-toc" aria-label="本页目录">
+        <strong>本页目录</strong>
+        <a href="#install">安装</a>
+        <a href="#start">使用</a>
+        <a href="#verify">文件校验</a>
+      </nav>
       <section aria-labelledby="install">
-        <h2 id="install">按设备下载</h2>
+        <h2 id="install" tabindex="-1">按设备下载</h2>
         <h3>Android 7.0 及以上</h3>
         <p><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/qingying-v1.0.0-public.10/Qingying-1.0.0-public-android.apk">下载 APK</a>，在 Android 设备上打开 APK 完成安装。手机端支持离线缓存。</p>
         <h3>Windows 10 / 11 x64</h3>
         <p><a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/qingying-windows-v1.0.0/Qingying-1.0.0-windows-x64-setup.exe">下载 EXE</a> · <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/qingying-windows-v1.0.0/Qingying-1.0.0-windows-x64.zip">下载安装 ZIP</a>。ZIP 需要先解压。运行 EXE 后，从开始菜单打开清影。</p>
       </section>
       <section aria-labelledby="start">
-        <h2 id="start">添加内容并播放</h2>
+        <h2 id="start" tabindex="-1">添加内容并播放</h2>
         <ol>
           <li>公开版首次打开时片源为空。可以打开一个本地视频，输入 HTTP 或 HTTPS 视频直链，或添加自己使用的 MacCMS 接口。</li>
           <li>使用 MacCMS 片源时，可搜索影片并在详情页选择剧集和可用线路。</li>
@@ -35,7 +41,7 @@
         <p>公开版的原片源账号、互动和云同步不可用。后台缓存、画中画与屏幕亮度控制由 Android 端提供。</p>
       </section>
       <section aria-labelledby="verify">
-        <h2 id="verify">版本与文件校验</h2>
+        <h2 id="verify" tabindex="-1">版本与文件校验</h2>
         <p>从 <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/qingying-v1.0.0-public.10">Android 发行页</a> 或 <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/qingying-windows-v1.0.0">Windows 发行页</a> 下载 <code>SHA256SUMS.txt</code>。在下载目录运行以下 PowerShell 命令，将结果与清单里同名文件的 SHA-256 比较。</p>
         <pre><code>Get-FileHash -Algorithm SHA256 .\Qingying-1.0.0-windows-x64-setup.exe</code></pre>
         <p>命令以 Windows 安装包为例。校验 APK 或 ZIP 时，把文件名换成实际下载的文件名，并使用对应平台的清单。</p>
