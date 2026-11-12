@@ -13,6 +13,10 @@
   color: #171717;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  :root { scroll-behavior: smooth; }
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; font-size: 1rem; line-height: 1.75; }
 .wrap { width: min(47rem, calc(100% - 2 * clamp(1rem, 5vw, 3rem))); margin-inline: auto; }

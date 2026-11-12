@@ -5,6 +5,7 @@ const chapters = [...contents.querySelectorAll("a[href^='#']")].map(link => ({
 }));
 let activeChapter;
 let jumpTarget;
+let jumpDistance;
 let frame;
 
 function updateCurrentChapter() {
@@ -17,9 +18,11 @@ function updateCurrentChapter() {
 
   if (jumpTarget) {
     const destination = Math.min(bottom, Math.max(0, scroll + jumpTarget.heading.getBoundingClientRect().top - offset));
-    // A heading near the end can share the same scroll position as a later one.
-    if (Math.abs(scroll - destination) <= 2) chapter = jumpTarget;
-    else jumpTarget = undefined;
+    const distance = Math.abs(scroll - destination);
+    // Keep the requested chapter while a smooth jump is approaching its destination.
+    if (distance <= 2) chapter = jumpTarget;
+    else if (distance > jumpDistance + 2) jumpTarget = undefined;
+    jumpDistance = distance;
   }
 
   if (!chapter) {
@@ -49,20 +52,30 @@ function scheduleUpdate() {
   });
 }
 
+function trackJump(chapter) {
+  jumpTarget = chapter;
+  jumpDistance = Infinity;
+  scheduleUpdate();
+}
+
 function updateFromHash() {
-  jumpTarget = chapters.find(({ link }) => link.hash === location.hash);
+  trackJump(chapters.find(({ link }) => link.hash === location.hash));
+}
+
+function clearJump() {
+  jumpTarget = undefined;
   scheduleUpdate();
 }
 
 contents.addEventListener("click", event => {
   if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
   const chapter = chapters.find(({ link }) => link === event.target.closest("a"));
-  if (!chapter) return;
-  jumpTarget = chapter;
-  scheduleUpdate();
+  if (chapter) trackJump(chapter);
 });
 
 window.addEventListener("scroll", scheduleUpdate, { passive: true });
+window.addEventListener("wheel", clearJump, { passive: true });
+window.addEventListener("touchmove", clearJump, { passive: true });
 window.addEventListener("resize", scheduleUpdate);
 window.addEventListener("hashchange", updateFromHash);
 window.addEventListener("pageshow", updateFromHash);
