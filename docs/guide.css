@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../assets/bricolage-grotesque.woff2") format("woff2");
+  font-weight: 400 750;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F;
+}
+
+:root {
+  color-scheme: light;
+  font-family: "Bricolage Grotesque", system-ui, "Microsoft YaHei UI", sans-serif;
+  background: #fff;
+  color: #171717;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-size: 1rem; line-height: 1.75; }
+.wrap { width: min(47rem, calc(100% - 2 * clamp(1rem, 5vw, 3rem))); margin-inline: auto; }
+
+a { color: #242424; text-underline-offset: .2em; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid #242424; outline-offset: 3px; }
+
+.site-header, .site-footer, .site-footer nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 1.25rem; }
+.site-header, .site-footer { justify-content: space-between; }
+.site-header { border-bottom: 1px solid #dedede; }
+.site-footer { border-top: 1px solid #dedede; padding-block: .4rem 1rem; }
+.site-header a, .site-footer a { display: inline-flex; align-items: center; min-height: 2.75rem; font-size: .9rem; }
+
+article { padding-block: clamp(2rem, 6vw, 4.5rem); }
+h1, h2, h3 { line-height: 1.3; }
+h1 { margin: 0; font-size: clamp(1.9rem, 5.6vw, 3.25rem); letter-spacing: -.035em; text-wrap: balance; }
+.lead { margin: 1rem 0 2rem; color: #4d4d4d; font-size: 1.08rem; }
+section { border-top: 1px solid #dedede; margin-top: 1.75rem; padding-top: 1.45rem; }
+h2 { margin: 0 0 .65rem; font-size: clamp(1.25rem, 3vw, 1.5rem); }
+h3 { margin: 1rem 0 .45rem; font-size: 1.05rem; }
+p, ul, ol { margin: .65rem 0; }
+ul, ol { padding-inline-start: 1.45em; }
+li + li { margin-block-start: .4rem; }
+code { overflow-wrap: anywhere; font: .92em "Cascadia Mono", Consolas, monospace; }
+pre { padding: .75rem 1rem; border: 1px solid #dedede; background: #f7f7f7; white-space: pre-wrap; }

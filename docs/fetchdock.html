@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Windows 多线程下载器，可将 Edge 或 Chrome 中的网盘任务推送到桌面程序，支持断点续传和任务排队。">
+  <title>FetchDock 使用文档 · shanhaiguanwu</title>
+  <link rel="stylesheet" href="guide.css">
+</head>
+<body>
+  <header class="wrap site-header">
+    <a href="../#fetchdock">返回项目</a>
+    <a href="https://github.com/shanhaiguanwu">GitHub</a>
+  </header>
+  <main class="wrap">
+    <article>
+      <h1>FetchDock 使用文档</h1>
+      <p class="lead">Windows 多线程下载器，可将 Edge 或 Chrome 中的网盘任务推送到桌面程序，支持断点续传和任务排队。</p>
+      <section aria-labelledby="install">
+        <h2 id="install">选择下载包 · Windows x64</h2>
+        <ul>
+          <li><strong>普通安装版</strong>提供 <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-windows-x64-setup.exe">下载 EXE</a> · <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-windows-x64.zip">下载安装 ZIP</a>。运行 EXE 后从开始菜单打开，默认目录为 <code>%LOCALAPPDATA%\Programs\FetchDock</code>。</li>
+          <li><strong>便携版</strong>提供 <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-windows-x64-portable.zip">下载便携 ZIP</a>。完整解压后运行 <code>FetchDock.exe</code>，依赖文件保留在同一目录。</li>
+          <li><strong>浏览器扩展</strong>随桌面包提供，位于  <code>browser_ext</code>。也可 <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-browser-extension.zip">单独下载扩展 ZIP</a> 后解压。</li>
+        </ul>
+      </section>
+      <section aria-labelledby="start">
+        <h2 id="start">连接 Edge 或 Chrome</h2>
+        <ol>
+          <li>在 <code>edge://extensions/</code> 或 <code>chrome://extensions/</code> 打开开发人员模式，加载解压后的扩展文件夹，选择含 <code>manifest.json</code> 的目录。</li>
+          <li>在扩展选项复制启动器注册命令，在 PowerShell 中运行。若用便携版或自选安装目录，把命令中的程序路径改为实际的 <code>FetchDockNative.exe</code> 路径。</li>
+          <li>重新加载扩展并刷新网页，点击「启动 / 连接下载器」。连接成功后，即可将可用的网盘任务推送到桌面程序。</li>
+        </ol>
+        <p>移动程序目录后需要重新注册。普通版与便携版共用当前用户的 <code>%APPDATA%\tdm_downloader</code> 设置与未完成任务。</p>
+      </section>
+      <section aria-labelledby="verify">
+        <h2 id="verify">版本与文件校验</h2>
+        <p>从 <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/tag/FetchDock-v2.0.2">2.0.2 发行页</a> 下载 <code>SHA256SUMS.txt</code>。在下载目录运行以下 PowerShell 命令，将结果与清单里同名文件的 SHA-256 比较。</p>
+        <pre><code>Get-FileHash -Algorithm SHA256 .\FetchDock-2.0.2-windows-x64-setup.exe</code></pre>
+        <p>安装 EXE 未进行代码签名。原发行清单用于校验它列出的附件。安装 ZIP 内包含安装 EXE，可解压后校验其中的 EXE。FetchDock 的对应源码及许可证见 <a href="https://github.com/shanhaiguanwu/shanhaiguanwu.github.io/releases/download/FetchDock-v2.0.2/FetchDock-2.0.2-source.zip">2.0.2 源码 ZIP</a>。</p>
+      </section>
+    </article>
+  </main>
+  <footer class="wrap site-footer">
+    <nav aria-label="其他项目使用文档">
+      <a href="filelens.html">FileLens</a>
+      <a href="qingying.html">清影</a>
+      <a href="gamefixkit.html">GameFixKit</a>
+    </nav>
+    <a href="https://github.com/shanhaiguanwu/Codex_workspace/blob/main/FetchDock/README.md">开发文档（需权限）</a>
+  </footer>
+</body>
+</html>
