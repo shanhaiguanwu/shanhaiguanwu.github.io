@@ -51,6 +51,12 @@ h1 { margin: 0; font-size: clamp(1.9rem, 5.6vw, 3.25rem); letter-spacing: -.035e
 }
 
 .guide-toc a, .guide-return a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+
+.guide-toc a[aria-current="location"] {
+  color: #171717;
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+}
 .guide-return { margin-block-start: 1rem; }
 article h2[id], article section a { scroll-margin-block-start: 4.75rem; }
 
