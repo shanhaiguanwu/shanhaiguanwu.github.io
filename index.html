@@ -57,8 +57,16 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
+      flex-wrap: wrap;
+      gap: 0 1rem;
       border-block-end: 1px solid var(--line);
+    }
+
+    .header-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0 clamp(.75rem, 2.5vw, 1.4rem);
     }
 
     .owner { font-size: 1.06rem; font-weight: 700; letter-spacing: -.035em; }
@@ -299,7 +307,10 @@
   <a href="#projects" class="skip">跳到项目</a>
   <header class="site-header shell">
     <span class="owner">shanhaiguanwu</span>
-    <a class="header-link" href="https://github.com/shanhaiguanwu">GitHub <i class="arrow arrow-out" aria-hidden="true"></i></a>
+    <nav class="header-nav" aria-label="网站导航">
+      <a class="header-link" href="docs/">使用文档</a>
+      <a class="header-link" href="https://github.com/shanhaiguanwu">GitHub <i class="arrow arrow-out" aria-hidden="true"></i></a>
+    </nav>
   </header>
 
   <main class="shell">
